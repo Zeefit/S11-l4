@@ -1,0 +1,45 @@
+1. Cattura del Traffico DNS
+Configurazione:
+Avviare Wireshark e selezionare l’interfaccia di rete corretta (es., wireless adapter).
+Eseguire un comando ipflush su Windows per svuotare la cache DNS, generando nuove richieste durante la cattura.
+Filtraggio:
+Applicare un filtro per il traffico DNS, ad esempio utilizzando udp.port==53 o selezionando direttamente il protocollo DNS.
+2. Analisi delle Query DNS
+Individuazione delle Richieste:
+Espandere i dettagli del pacchetto per visualizzare il livello Ethernet.
+Confermare che l'indirizzo MAC sorgente appartenga alla scheda di rete locale (es., Intel con MAC AC:12:03:07).
+Verificare che l'indirizzo di destinazione corrisponda al gateway o al server DNS (es., 192.168.1.1).
+Dettagli delle Richieste:
+La porta sorgente è casuale (es., 51985), mentre la destinazione è la porta standard 53.
+Analizzare il protocollo DNS per identificare:
+Tipo di messaggio: Query.
+Tipo di record richiesto: A (IPv4).
+Flag di ricorsione: impostato su Recursion Desired.
+3. Analisi delle Risposte DNS
+Inversione dei Ruoli:
+Nelle risposte DNS, il server DNS (es., 192.168.1.1) diventa la sorgente, mentre il dispositivo locale (es., 192.168.1.5) diventa la destinazione.
+La porta sorgente diventa 53, mentre la porta di destinazione è quella casuale usata in precedenza (es., 51985).
+Dettagli delle Risposte:
+Confermare che il flag Recursion Available sia attivo, indicando che il server ha completato la risoluzione ricorsiva.
+Verificare gli indirizzi IP restituiti dal server DNS, associati al dominio richiesto (es., example.org → 93.184.216.34, 93.184.216.35).
+4. Validazione con nslookup
+Verifica:
+Utilizzare nslookup per interrogare il server DNS configurato e confrontare gli indirizzi IP restituiti con quelli osservati in Wireshark.
+Confermare la corretta associazione tra nome di dominio e indirizzi IP, completando l’esercizio.
+Finaler:
+Ricorsione: Il server DNS utilizzato supporta la risoluzione ricorsiva, completando le richieste e fornendo risposte complete.
+Iterazione: In caso di assenza di supporto alla ricorsione, il server avrebbe restituito una risposta iterativa con il riferimento al server successivo da interrogare.
+Riassunto Tecnico
+
+Richieste DNS:
+
+Indirizzo sorgente: dispositivo locale (es., 192.168.1.5).
+Indirizzo destinazione: server DNS del gateway (es., 192.168.1.1).
+Tipo di record richiesto: A (IPv4).
+Porta: sorgente casuale, destinazione 53.
+Risposte DNS:
+
+Indirizzo sorgente: server DNS (es., 192.168.1.1).
+Indirizzo destinazione: dispositivo locale (es., 192.168.1.5).
+Porta: sorgente 53, destinazione casuale.
+Risultato: indirizzi IP associati al dominio richiesto (es., example.org → 93.184.216.34, 93.184.216.35).
