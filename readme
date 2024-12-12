@@ -21,7 +21,7 @@ Nelle risposte DNS, il server DNS (es., 192.168.1.1) diventa la sorgente, mentre
 La porta sorgente diventa 53, mentre la porta di destinazione è quella casuale usata in precedenza (es., 51985).
 Dettagli delle Risposte:
 Confermare che il flag Recursion Available sia attivo, indicando che il server ha completato la risoluzione ricorsiva.
-Verificare gli indirizzi IP restituiti dal server DNS, associati al dominio richiesto (es., example.org → 93.184.216.34, 93.184.216.35).
+Verificare gli indirizzi IP restituiti dal server DNS, associati al dominio richiesto (es., amazon.it → 93.184.216.34, 93.184.216.35).
 4. Validazione con nslookup
 Verifica:
 Utilizzare nslookup per interrogare il server DNS configurato e confrontare gli indirizzi IP restituiti con quelli osservati in Wireshark.
@@ -42,4 +42,4 @@ Risposte DNS:
 Indirizzo sorgente: server DNS (es., 192.168.1.1).
 Indirizzo destinazione: dispositivo locale (es., 192.168.1.5).
 Porta: sorgente 53, destinazione casuale.
-Risultato: indirizzi IP associati al dominio richiesto (es., example.org → 93.184.216.34, 93.184.216.35).
+Risultato: indirizzi IP associati al dominio richiesto (es., amazon.it → 93.184.216.34, 93.184.216.35).
